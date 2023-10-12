@@ -13,6 +13,8 @@
 		787FE7D62AD7EA7A00B69446 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 787FE7D52AD7EA7A00B69446 /* Preview Assets.xcassets */; };
 		787FE7D82AD7EA7A00B69446 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787FE7D72AD7EA7A00B69446 /* Persistence.swift */; };
 		787FE7DB2AD7EA7A00B69446 /* TreeTestWork.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 787FE7D92AD7EA7A00B69446 /* TreeTestWork.xcdatamodeld */; };
+		787FE7E22AD7F80600B69446 /* TreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787FE7E12AD7F80600B69446 /* TreeView.swift */; };
+		787FE7E42AD7F80F00B69446 /* TreeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787FE7E32AD7F80F00B69446 /* TreeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		787FE7D52AD7EA7A00B69446 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		787FE7D72AD7EA7A00B69446 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		787FE7DA2AD7EA7A00B69446 /* TreeTestWork.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TreeTestWork.xcdatamodel; sourceTree = "<group>"; };
+		787FE7E12AD7F80600B69446 /* TreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeView.swift; sourceTree = "<group>"; };
+		787FE7E32AD7F80F00B69446 /* TreeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				787FE7D02AD7EA7800B69446 /* ContentView.swift */,
 				787FE7D22AD7EA7A00B69446 /* Assets.xcassets */,
 				787FE7D72AD7EA7A00B69446 /* Persistence.swift */,
+				787FE7E12AD7F80600B69446 /* TreeView.swift */,
+				787FE7E32AD7F80F00B69446 /* TreeViewModel.swift */,
 				787FE7D92AD7EA7A00B69446 /* TreeTestWork.xcdatamodeld */,
 				787FE7D42AD7EA7A00B69446 /* Preview Content */,
 			);
@@ -143,9 +149,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				787FE7E22AD7F80600B69446 /* TreeView.swift in Sources */,
 				787FE7DB2AD7EA7A00B69446 /* TreeTestWork.xcdatamodeld in Sources */,
 				787FE7D82AD7EA7A00B69446 /* Persistence.swift in Sources */,
 				787FE7D12AD7EA7800B69446 /* ContentView.swift in Sources */,
+				787FE7E42AD7F80F00B69446 /* TreeViewModel.swift in Sources */,
 				787FE7CF2AD7EA7800B69446 /* TreeTestWorkApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,7 +213,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -262,7 +270,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
