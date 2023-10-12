@@ -63,8 +63,8 @@
 				787FE7D02AD7EA7800B69446 /* ContentView.swift */,
 				787FE7D22AD7EA7A00B69446 /* Assets.xcassets */,
 				787FE7D72AD7EA7A00B69446 /* Persistence.swift */,
-				787FE7E12AD7F80600B69446 /* TreeView.swift */,
 				787FE7E32AD7F80F00B69446 /* TreeViewModel.swift */,
+				787FE7E12AD7F80600B69446 /* TreeView.swift */,
 				787FE7D92AD7EA7A00B69446 /* TreeTestWork.xcdatamodeld */,
 				787FE7D42AD7EA7A00B69446 /* Preview Content */,
 			);
