@@ -12,11 +12,18 @@ import SwiftUI
 
 class TreeViewModel: ObservableObject {
     let persistenceController = PersistenceController.shared.container.viewContext
+    var model: TreeModel?
     
+    init() {
+    }
+    
+    init(model: TreeModel?) {
+        self.model = model
+    }
     
     func randomName() -> String {
-      let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-      return String((0..<20).map{ _ in letters.randomElement()! })
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return String((0..<20).map{ _ in letters.randomElement()! })
     }
     
     func save() {
@@ -28,10 +35,11 @@ class TreeViewModel: ObservableObject {
         }
     }
     
-    func setRoot() {
+    func setRoot() -> TreeModel {
         let newItem = TreeModel(context: persistenceController)
         newItem.name = "Root"
         save()
+        return newItem
     }
     
     func addItem() {

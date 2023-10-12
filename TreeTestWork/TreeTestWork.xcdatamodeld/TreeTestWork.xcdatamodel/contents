@@ -4,7 +4,7 @@
         <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="TreeModel" representedClassName="TreeModel" syncable="YES" codeGenerationType="class">
-        <attribute name="name" attributeType="String"/>
+        <attribute name="name" attributeType="String" defaultValueString="Root"/>
         <relationship name="child" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TreeModel" inverseName="parent" inverseEntity="TreeModel"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TreeModel" inverseName="child" inverseEntity="TreeModel"/>
     </entity>

@@ -10,7 +10,7 @@ import CoreData
 
 struct TreeView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var model: TreeViewModel
+    @ObservedObject var viewModel: TreeViewModel
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \TreeModel.name, ascending: true)],
         animation: .default)
@@ -22,7 +22,7 @@ struct TreeView: View {
                 List {
                     ForEach(items) { item in
                         NavigationLink {
-                            Text("Item at \(item.name!)")
+                            TreeView(viewModel: TreeViewModel(model:item)).environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
                         } label: {
                             Text(item.name!)
                         }
@@ -34,13 +34,13 @@ struct TreeView: View {
                         EditButton()
                     }
                     ToolbarItem {
-                        Button(action: model.addItem) {
+                        Button(action: viewModel.addItem) {
                             Label("Add Item", systemImage: "plus")
                         }
                     }
                 }
             }
-            .navigationTitle("Root")
+            .navigationTitle(viewModel.model?.name ?? "Root")
         }
     }
     
@@ -56,5 +56,5 @@ struct TreeView: View {
 }
 
 #Preview {
-    TreeView(model: TreeViewModel()).environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+    TreeView(viewModel: TreeViewModel()).environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
 }

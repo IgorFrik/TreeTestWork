@@ -13,7 +13,7 @@ struct TreeTestWorkApp: App {
 
     var body: some Scene {
         WindowGroup {
-            TreeView(model: TreeViewModel())
+            TreeView(viewModel: TreeViewModel())
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
