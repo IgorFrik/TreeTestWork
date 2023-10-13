@@ -20,27 +20,39 @@ struct TreeView: View {
         NavigationStack {
             NavigationView {
                 List {
-                    ForEach(items) { item in
+                    ForEach(viewModel.child) { item in
                         NavigationLink {
                             TreeView(viewModel: TreeViewModel(model:item)).environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
                         } label: {
-                            Text(item.name!)
+                            Text(item.name ?? "Error")
                         }
                     }
                     .onDelete(perform: deleteItem)
                 }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
+                
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    NavigationLink {
+                        TreeView(viewModel: TreeViewModel(model:viewModel.model?.parent)).environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                    } label: {
+                        Text(verbatim: "Back to \(viewModel.model?.parent?.name ?? "Error")")
                     }
-                    ToolbarItem {
-                        Button(action: viewModel.addItem) {
-                            Label("Add Item", systemImage: "plus")
-                        }
+                }
+                ToolbarItem {
+                    Button(action: {
+                        viewModel.addChildren(parent: self.viewModel.model!)
+                    }) {
+                        Label("Add Item", systemImage: "plus")
                     }
                 }
             }
-            .navigationTitle(viewModel.model?.name ?? "Root")
+            .navigationBarBackButtonHidden(true)
+            .navigationTitle(viewModel.model?.name ?? "Error")
+            .onAppear {
+                viewModel.setChild()
+                viewModel.setDefaultModelName()
+            }
         }
     }
     
@@ -48,6 +60,7 @@ struct TreeView: View {
         offsets.map { items[$0] }.forEach(viewContext.delete)
         do {
             try viewContext.save()
+            viewModel.setChild()
         } catch {
             let nsError = error as NSError
             fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -58,3 +71,4 @@ struct TreeView: View {
 #Preview {
     TreeView(viewModel: TreeViewModel()).environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
 }
+
