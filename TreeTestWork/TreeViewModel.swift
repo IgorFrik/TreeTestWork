@@ -7,8 +7,6 @@
 
 import Foundation
 import CoreData
-import Combine
-import SwiftUI
 
 class TreeViewModel: ObservableObject {
     let persistenceController = PersistenceController.shared.container.viewContext
@@ -16,12 +14,10 @@ class TreeViewModel: ObservableObject {
     
     init() {
         let count = try? persistenceController.count(for: NSFetchRequest(entityName: "TreeModel"))
-        print(count!)
         if count == 0 {
             setRoot()
         } else {
             setView()
-            //            deleteAll()
         }
     }
     
@@ -39,7 +35,7 @@ class TreeViewModel: ObservableObject {
     
     func addChildren(parent: TreeModel) {
         let newItem = TreeModel(context: persistenceController)
-        newItem.name = randomName()
+        newItem.name = hexName()
         newItem.parent = parent
         save()
     }
@@ -47,20 +43,31 @@ class TreeViewModel: ObservableObject {
     func deleteItem(offsets: IndexSet) {
         let items = try! persistenceController.fetch(NSFetchRequest(entityName: "TreeModel"))
             .map { $0 as! TreeModel }
+        let newItems = items
+            .sorted { $0.name! < $1.name!}
             .filter { $0.parent == self.model}
-        let newItems = items.sorted { $0.name! < $1.name!}
         offsets
             .map { newItems[$0] }
-            .forEach { elem in
-                print(elem)
-            }
+            .forEach(persistenceController.delete)
+        save()
+        items
+            .filter { $0.parent == nil && $0.name != "Root" }
+            .forEach(persistenceController.delete)
         save()
     }
     
     // MARK: - private func
-    private func randomName() -> String {
-        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        return String((0..<20).map{ _ in letters.randomElement()! })
+    private func hexName() -> String {
+        var keyData = Data(count: 20)
+        let result = keyData.withUnsafeMutableBytes {
+            SecRandomCopyBytes(kSecRandomDefault, 20, $0.baseAddress!)
+        }
+        if result == errSecSuccess {
+            return keyData.base64EncodedString()
+        } else {
+            print("Problem generating random bytes")
+            return "Error"
+        }
     }
     
     private func save() {
@@ -87,7 +94,7 @@ class TreeViewModel: ObservableObject {
             .filter{ $0.name == UserDefaults.standard.string(forKey: "root")!}
             .first
     }
-    
+// MARK: - for delete all TreeModel
     private func deleteAll() {
         let root = try! persistenceController.fetch(NSFetchRequest(entityName: "TreeModel"))
         root.forEach({ elem in

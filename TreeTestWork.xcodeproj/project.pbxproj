@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		787FE7CF2AD7EA7800B69446 /* TreeTestWorkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787FE7CE2AD7EA7800B69446 /* TreeTestWorkApp.swift */; };
-		787FE7D12AD7EA7800B69446 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787FE7D02AD7EA7800B69446 /* ContentView.swift */; };
 		787FE7D32AD7EA7A00B69446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 787FE7D22AD7EA7A00B69446 /* Assets.xcassets */; };
 		787FE7D62AD7EA7A00B69446 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 787FE7D52AD7EA7A00B69446 /* Preview Assets.xcassets */; };
 		787FE7D82AD7EA7A00B69446 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 787FE7D72AD7EA7A00B69446 /* Persistence.swift */; };
@@ -20,7 +19,6 @@
 /* Begin PBXFileReference section */
 		787FE7CB2AD7EA7800B69446 /* TreeTestWork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TreeTestWork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		787FE7CE2AD7EA7800B69446 /* TreeTestWorkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeTestWorkApp.swift; sourceTree = "<group>"; };
-		787FE7D02AD7EA7800B69446 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		787FE7D22AD7EA7A00B69446 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		787FE7D52AD7EA7A00B69446 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		787FE7D72AD7EA7A00B69446 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -60,7 +58,6 @@
 			isa = PBXGroup;
 			children = (
 				787FE7CE2AD7EA7800B69446 /* TreeTestWorkApp.swift */,
-				787FE7D02AD7EA7800B69446 /* ContentView.swift */,
 				787FE7D22AD7EA7A00B69446 /* Assets.xcassets */,
 				787FE7D72AD7EA7A00B69446 /* Persistence.swift */,
 				787FE7E32AD7F80F00B69446 /* TreeViewModel.swift */,
@@ -152,7 +149,6 @@
 				787FE7E22AD7F80600B69446 /* TreeView.swift in Sources */,
 				787FE7DB2AD7EA7A00B69446 /* TreeTestWork.xcdatamodeld in Sources */,
 				787FE7D82AD7EA7A00B69446 /* Persistence.swift in Sources */,
-				787FE7D12AD7EA7800B69446 /* ContentView.swift in Sources */,
 				787FE7E42AD7F80F00B69446 /* TreeViewModel.swift in Sources */,
 				787FE7CF2AD7EA7800B69446 /* TreeTestWorkApp.swift in Sources */,
 			);
