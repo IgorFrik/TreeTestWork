@@ -33,10 +33,12 @@ struct TreeView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    NavigationLink {
-                        TreeView(viewModel: TreeViewModel(model:viewModel.model?.parent)).environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
-                    } label: {
-                        Text(verbatim: "Back to \(viewModel.model?.parent?.name ?? "Error")")
+                    if viewModel.model?.parent == nil { } else {
+                        NavigationLink {
+                            TreeView(viewModel: TreeViewModel(model:viewModel.model?.parent)).environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                        } label: {
+                            Text(verbatim: "Back to \(viewModel.model?.parent?.name ?? "Error")")
+                        }
                     }
                 }
                 ToolbarItem {
@@ -57,14 +59,17 @@ struct TreeView: View {
     }
     
     private func deleteItem(offsets: IndexSet) {
-        offsets.map { items[$0] }.forEach(viewContext.delete)
-        do {
-            try viewContext.save()
-            viewModel.setChild()
-        } catch {
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-        }
+        print(offsets.forEach({ elem in
+            print(elem)
+        }))
+//        offsets.map { items[$0] }.forEach(viewContext.delete)
+//        do {
+//            try viewContext.save()
+//            viewModel.setChild()
+//        } catch {
+//            let nsError = error as NSError
+//            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+//        }
     }
 }
 
