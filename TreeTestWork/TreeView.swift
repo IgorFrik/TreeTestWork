@@ -20,56 +20,40 @@ struct TreeView: View {
         NavigationStack {
             NavigationView {
                 List {
-                    ForEach(viewModel.child) { item in
+                    ForEach(items.filter{ $0.parent == viewModel.getModel()}) { item in
                         NavigationLink {
                             TreeView(viewModel: TreeViewModel(model:item)).environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
                         } label: {
                             Text(item.name ?? "Error")
                         }
                     }
-                    .onDelete(perform: deleteItem)
+                    .onDelete(perform: viewModel.deleteItem)
                 }
-                
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    if viewModel.model?.parent == nil { } else {
+                    if viewModel.getModel()?.parent == nil { } else {
                         NavigationLink {
-                            TreeView(viewModel: TreeViewModel(model:viewModel.model?.parent)).environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
+                            TreeView(viewModel: TreeViewModel(model:viewModel.getModel()?.parent)).environment(\.managedObjectContext, PersistenceController.shared.container.viewContext)
                         } label: {
-                            Text(verbatim: "Back to \(viewModel.model?.parent?.name ?? "Error")")
+                            Text(verbatim: "Back to \(viewModel.getModel()?.parent?.name ?? "Error")")
                         }
                     }
                 }
                 ToolbarItem {
                     Button(action: {
-                        viewModel.addChildren(parent: self.viewModel.model!)
+                        viewModel.addChildren(parent: self.viewModel.getModel()!)
                     }) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
             .navigationBarBackButtonHidden(true)
-            .navigationTitle(viewModel.model?.name ?? "Error")
+            .navigationTitle(viewModel.getModel()?.name ?? "Error")
             .onAppear {
-                viewModel.setChild()
                 viewModel.setDefaultModelName()
             }
         }
-    }
-    
-    private func deleteItem(offsets: IndexSet) {
-        print(offsets.forEach({ elem in
-            print(elem)
-        }))
-//        offsets.map { items[$0] }.forEach(viewContext.delete)
-//        do {
-//            try viewContext.save()
-//            viewModel.setChild()
-//        } catch {
-//            let nsError = error as NSError
-//            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//        }
     }
 }
 
